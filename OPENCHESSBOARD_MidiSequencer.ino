@@ -43,15 +43,17 @@ void loop() {
 
   for (int channel = 0; channel < 8; channel++)
   {
+    /* use the bottom three rows for midi channel 1 with first three notes in PadNote array*/
     if(channel < 3){
       MIDI_TX(144,PadNote[channel],channel_vel[channel], 1); //note on
     }
+     /* use top bottom five rows for midi channel 2 with last five notes in PadNote array */
     else{
       MIDI_TX(144,PadNote[channel],channel_vel[channel], 2); //note on
     }
   }
 
-  delay(60000/BPM-75); 
+  delay(60000/BPM-75); /* 75ms compensate for sensor readout, LED display etc. to match BPM */
   
   for (int channel = 0; channel < 8; channel++)
   {
