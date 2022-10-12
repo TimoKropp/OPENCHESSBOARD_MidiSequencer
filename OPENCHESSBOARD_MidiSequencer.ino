@@ -1,5 +1,5 @@
 /* ---------------------------------------
- * This is the main file of the OPENCHESSBOARD Midi Sequencer for Ableton Live 
+ * This is the main file of the OpenChessBoard firmware v1.0.0
 */   
 
 
@@ -27,9 +27,18 @@ NOTE -1  0   1   2   3   4   5   6   7    8   9
 
 /* Note Selection from upper table for all 8 rows */
 byte PadNote[8] = { 
- 1, 2 , 3 , 36 , 38, 40 , 43 , 47 };   
+ 1, 2 , 3 , 60 , 72, 74 , 77 , 79 };   
    
 #define BPM 120
+#define NOTELENGTH  500
+
+
+unsigned long initTime[8] = {0};
+unsigned long step_initTime = 0;
+int BPM_delay = (60000/BPM)-75;
+int duration[8] = {1};
+int step_duration = 1;
+
 
 void setup() {
   Serial.begin(112500);
@@ -40,33 +49,51 @@ void setup() {
 void loop() {
   read_keys();
   displayStep();
-
+  step_initTime = millis();
   for (int channel = 0; channel < 8; channel++)
   {
-    /* use the bottom three rows for midi channel 1 with first three notes in PadNote array*/
+    initTime[channel] = millis();
+  }
+  for (int channel = 0; channel < 8; channel++)
+  {
     if(channel < 3){
-      MIDI_TX(144,PadNote[channel],channel_vel[channel], 1); //note on
+      if (channel_vel[channel]>0){
+        initTime[channel] = millis();
+        MIDI_TX(144,PadNote[channel],channel_vel[channel], 1); //note on
+      }
     }
-     /* use top bottom five rows for midi channel 2 with last five notes in PadNote array */
+    /* use the bottom three rows for midi channel 2 */
     else{
-      MIDI_TX(144,PadNote[channel],channel_vel[channel], 2); //note on
+      if(channel_vel[channel]>0){
+        initTime[channel] = millis();
+        MIDI_TX(144,PadNote[channel],channel_vel[channel], 2); //note on
+      }
     }
   }
-
-  delay(60000/BPM-75); /* 75ms compensate for sensor readout, LED display etc. to match BPM */
   
-  for (int channel = 0; channel < 8; channel++)
-  {
-    MIDI_TX(128,PadNote[channel],0, 1); //note off
-    MIDI_TX(128,PadNote[channel],0, 2); //note off
+  step_duration  =  millis() - step_initTime;
+  
+  for (int channel = 0; channel < 8; channel++){
+    duration[channel] =  millis() - initTime[channel];
   }
-
-  delay(10);
   
+  while (step_duration < BPM_delay){
+    
+    step_duration =  millis() - step_initTime;
+    
+    for (int channel = 0; channel < 8; channel++){
+      duration[channel] =  millis() - initTime[channel];
+      if (duration[channel] >= NOTELENGTH){
+            MIDI_TX(128,PadNote[channel],0, 1); //note off
+            MIDI_TX(128,PadNote[channel],0, 2); //note off
+      }
+    }
+  }
   current_step++;
   if(current_step == 8){
+    
     current_step = 0;
-    }
+  }
 }
 
 void read_keys(){
