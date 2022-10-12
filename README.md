@@ -1,5 +1,5 @@
 # OPENCHESSBOARD_MidiSequencer
-This is a creative use case for using the openchessboard as midi-step-sequencer with Ableton Live. U
+This is a creative use case for using the openchessboard as midi-step-sequencer with Ableton Live. 
 
 # SETUP
 Use the .als template-file for quick setup of a new Ableton Live project.Two third party programs, LoopMidi and Hairless MIDI, are needed to support the openchessboard as midi device in Ableton Live.
