@@ -15,4 +15,4 @@ Setup Hairless Midi as shown in this image:<br/>
 ![](/images/hairless_setting2.png)<br/>
 Settings of Hairless Midi as shown in this image:<br/>
 ![](/images/hairless_setting.png)<br/>
-Note that the Baud rate must alwas math the Baud rate set in the Arduino project.
+Note that the Baud rate must always match the Baud rate defined in the Arduino project.
