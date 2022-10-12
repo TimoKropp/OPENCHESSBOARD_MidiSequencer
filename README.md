@@ -2,7 +2,7 @@
 This is a creative use case for using the openchessboard as midi-step-sequencer with Ableton Live.
 
 # SETUP
-Two third party programs are needed to support the openchessboard as midi device in Ableton Live.
+Two third party programs, LoopMidi and Hairless MIDI, are needed to support the openchessboard as midi device in Ableton Live.
 
 ## LoopMIDI allows Ableton to use an external MIDI device.
 Download LoopMIDI [here](https://www.tobias-erichsen.de/software/loopmidi.html).
