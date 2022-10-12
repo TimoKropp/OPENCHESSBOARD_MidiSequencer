@@ -12,6 +12,7 @@ Setup Ableton as shown in this image:
 ## Hairless MIDI bridges between the serial communication of the openchessboard and the LoopMidi Port
 Download Hairless MIDI [here](https://projectgus.github.io/hairless-midiserial).
 Setup Hairless Midi as shown in this image:
-![](/images/hairless_setting.png)
 ![](/images/hairless_setting2.png)
+Settings of Hairless Midi as shown in this image:
+![](/images/hairless_setting.png)
 Note that the Baud rate must alwas math the Baud rate set in the Arduino project.
