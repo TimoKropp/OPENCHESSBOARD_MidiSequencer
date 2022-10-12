@@ -1,5 +1,5 @@
 /* ---------------------------------------
- * This is the main file of the OpenChessBoard firmware v1.0.0
+ * This is the main file of the OPENCHESSBOARD Midi Sequencer for Ableton Live 
 */   
 
 
