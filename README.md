@@ -7,7 +7,7 @@ Two third party programs, LoopMidi and Hairless MIDI, are needed to support the 
 ## LoopMIDI allows Ableton to use an external MIDI device.
 Download LoopMIDI [here](https://www.tobias-erichsen.de/software/loopmidi.html).
 Setup Ableton as shown in this image:
-![Ableton Setup for LoopMIDI]("./images/ableton_setup.png?raw=true "Title")
+![plot](./images/ableton_setup.png)
 
 ## Hairless MIDI bridges between the serial communication of the openchessboard and the LoopMidi Port
 Download Hairless MIDI [here](https://projectgus.github.io/hairless-midiserial).
